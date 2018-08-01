@@ -8,6 +8,6 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 public class Tag implements Serializable {
-    int labelId;
-    String labelName;
+    int tagId;
+    String tagName;
 }

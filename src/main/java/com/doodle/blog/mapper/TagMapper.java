@@ -10,6 +10,6 @@ import java.util.List;
 @Mapper
 @Repository
 public interface TagMapper {
-    @Select("select label_id as labelId, label_name as labelName from label")
+    @Select("select tag_id as tagId, tag_name as tagName from tag")
     List<Tag> queryTags();
 }
