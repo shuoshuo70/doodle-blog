@@ -6,9 +6,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class Log implements Serializable {
-    private int logId;
-    private String action;
-    private int userId;
+public class EventLog implements Serializable {
+    private long logId;
+    private int eventId;
+    private long userId;
     private Date createTime;
 }

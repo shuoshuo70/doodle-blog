@@ -1,20 +1,3 @@
-create table tag (
-    tag_id int not null auto_increment,
-    tag_name varchar(30) not null,
-    create_time timestamp default current_timestamp,
-    primary key (tag_id),
-    index (tag_id)
-);
-
-
-create table category (
-    category_id int not null auto_increment,
-    category_name varchar(30) not null,
-    primary key (category_id),
-    index (category_id)
-);
-
-
 create table user (
     user_id mediumint not null auto_increment,
     user_name varchar(30) not null,
@@ -28,11 +11,32 @@ create table user (
 );
 
 
+create table tag (
+    tag_id mediumint not null auto_increment,
+    tag_name varchar(30) not null,
+    user_id mediumint not null,
+    create_time timestamp default current_timestamp,
+    primary key (tag_id),
+    index (user_id),
+    foreign key (user_id) references user(user_id) ON UPDATE CASCADE ON DELETE RESTRICT
+);
+
+
+create table category (
+    category_id mediumint not null auto_increment,
+    user_id mediumint not null,
+    category_name varchar(30) not null,
+    primary key (category_id),
+    index (user_id),
+    foreign key (user_id) references user(user_id) ON UPDATE CASCADE ON DELETE RESTRICT
+);
+
+
 create table article (
     article_id mediumint not null auto_increment,
     author_id mediumint not null,
     tag_ids varchar(100),
-    category_id int not null,
+    category_id mediumint not null,
     title varchar(300) not null,
     create_time timestamp default current_timestamp,
     is_deleted boolean default false,
@@ -62,6 +66,7 @@ create table comment (
     commenter_id mediumint not null,
     article_id mediumint not null,
     content text,
+    create_time timestamp default current_timestamp,
     is_deleted boolean default false,
     primary key (comment_id),
     foreign key (commenter_id) references user (user_id) ON UPDATE CASCADE ON DELETE RESTRICT,
@@ -70,9 +75,10 @@ create table comment (
 );
 
 
+
 create table event (
     event_id int not null auto_increment,
-    event varchar(100) not null,
+    event_name varchar(100) not null,
     primary key (event_id)
 );
 

@@ -3,15 +3,16 @@ package com.doodle.blog.model;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.List;
+import java.sql.Timestamp;
 
 
 @Data
 public class User implements Serializable {
-    private int userId;
+    private long userId;
     private String userName;
     private String nickName;
     private String password;
     private String email;
-    private List<Article> articles;
+    private Timestamp createTime;
+    private boolean isActive;
 }

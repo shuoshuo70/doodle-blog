@@ -7,8 +7,10 @@ import java.util.Date;
 
 @Data
 public class Comment implements Serializable {
-    private int commentId;
+    private long commentId;
+    private long commenterId;
+    private long articleId;
     private String content;
-    private int userId;
     private Date createTime;
+    private boolean isDeleted;
 }

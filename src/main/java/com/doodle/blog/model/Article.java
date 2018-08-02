@@ -3,17 +3,16 @@ package com.doodle.blog.model;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
+import java.sql.Timestamp;
+
 
 @Data
 public class Article implements Serializable {
+    private long articleId;
+    private long authorId;
+    private String tagIds;
+    private int categoryId;
     private String title;
-    private String content;
-    private int hits;
-    private List<Integer> labelIds;
-    private int userId;
-    private Date createTime;
-    private String status;
-    private int commentCount;
+    private Timestamp createTime;
+    private boolean isDeleted;
 }
