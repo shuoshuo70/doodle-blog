@@ -10,7 +10,7 @@ spring:
   profiles: staging
   datasources:
     blog:
-      jdbc-url: jdbc:mysql://127.0.0.1/blog?useSSL=false
+      jdbc-url: jdbc:mysql://127.0.0.1/blog_test?useSSL=false
       username: root
       password: Trydiff12@
       driver-class-name: com.mysql.jdbc.Driver

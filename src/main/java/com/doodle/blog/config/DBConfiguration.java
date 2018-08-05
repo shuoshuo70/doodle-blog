@@ -9,16 +9,14 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.sql.DataSource;
 
 @MapperScan("com.doodle.blog")
 @Configuration
 public class DBConfiguration {
-    private static final String BLOG_DATABASE = "blog";
 
-    @Bean(name = BLOG_DATABASE, destroyMethod = "")
+    @Bean
     @ConfigurationProperties(prefix = "spring.datasources.blog")
     public DataSource dataSource() {
         return DataSourceBuilder.create().type(HikariDataSource.class).build();
