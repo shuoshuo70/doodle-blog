@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 
 @MapperScan("com.doodle.blog")
 @Configuration
-public class DBConfiguration {
+public class DBConfig {
 
     @Bean
     @ConfigurationProperties(prefix = "spring.datasources.blog")

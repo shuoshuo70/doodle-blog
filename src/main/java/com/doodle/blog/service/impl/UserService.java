@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
-import static com.doodle.blog.util.AuthUtil.md5Encode;
+import static com.doodle.blog.util.EncryptUtil.md5Encode;
 
 @Service
 public class UserService implements IUserService {
