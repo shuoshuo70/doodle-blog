@@ -28,19 +28,14 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
     @Resource
     private IUserService userService;
 
-    private static User getLoginUser(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        if (Objects.isNull(session)) {
-            return null;
-        }
-
-        return (User) session.getAttribute(LOGIN_SESSION_KEY);
-    }
-
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String requestURI = request.getRequestURI();
-        User user = getLoginUser(request);
+        User user = null;
+        HttpSession session = request.getSession();
+        if (!Objects.isNull(session)) {
+            user = (User) session.getAttribute(LOGIN_SESSION_KEY);
+        }
 
         if (Objects.isNull(user)) {
             Long userId = getUserIdFromCookie(request);
@@ -59,6 +54,12 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
             }
         }
 
+        preventCSRF(request);
+
+        return true;
+    }
+
+    private void preventCSRF(HttpServletRequest request) {
         //set csrf to prevent attack
         Cache<String, Object> cache = (Cache<String, Object>) request.getAttribute(CSRF_PREVENT);
         if (Objects.isNull(cache)) {
@@ -72,8 +73,6 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
         cache.put(salt, true);
 
         request.setAttribute(CSRF_PREVENT, salt);
-
-        return true;
     }
 
     @Override
