@@ -1,10 +1,12 @@
 package com.doodle.blog.logic;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Data
+@NoArgsConstructor
 public class RestResponse<T> implements Serializable {
 
     private boolean success;
@@ -21,6 +23,7 @@ public class RestResponse<T> implements Serializable {
     RestResponse(boolean success, String message) {
         this.success = success;
         this.message = message;
+        this.responseTime = System.currentTimeMillis() / 1000;
     }
 
     public static <T> RestResponse success() {
