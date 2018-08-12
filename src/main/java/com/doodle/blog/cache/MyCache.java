@@ -6,8 +6,8 @@ import com.google.common.cache.CacheBuilder;
 import java.util.concurrent.TimeUnit;
 
 public class MyCache {
-    private static class InstanceHolder {
-        private static MyCache cache = new MyCache();
+    private MyCache() {
+
     }
 
     public static MyCache getInstance() {
@@ -21,7 +21,7 @@ public class MyCache {
                 .build();
     }
 
-    private MyCache() {
-
+    private static class InstanceHolder {
+        private static MyCache cache = new MyCache();
     }
 }
